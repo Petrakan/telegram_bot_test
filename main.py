@@ -15,6 +15,7 @@ def start(bot, update):
                             reply_markup=main_menu_keyboard())
 
 def main_menu(bot, update):
+  bot.send_photo(chat_id=chat_id, photo='https://telegram.org/img/t_logo.png')
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
