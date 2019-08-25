@@ -4,7 +4,7 @@ from telegram.ext import CommandHandler, CallbackQueryHandler, Updater
 
 from config import REQUEST_KWARGS, TOKEN
 
-updater = Updater(TOKEN, request_kwargs=REQUEST_KWARGS)
+updater = Updater(TOKEN)
 
 
 
@@ -20,6 +20,7 @@ def main_menu(bot, update):
                         message_id=query.message.message_id,
                         text= 'Выберите вид товара',
                         reply_markup=main_menu_keyboard())
+
 
 # Функции кругов
 
