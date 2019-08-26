@@ -26,23 +26,20 @@ def main_menu(bot, update):
 
 # Функции кругов
 
-def kr_menu(bot, update):
-    query = update.callback_query
-    photo = ('https://telegram.org/img/t_logo.png')
-    bot.send_photo(
-                   photo=photo['message'],
-                   caption=f'Выберите вид круга: {photo}',
-                   chat_id=query.message.chat_id,
-                   message_id=query.message.message_id,
-                   reply_markup=kr_menu_keyboard())
-
-
 # def kr_menu(bot, update):
-#   query = update.callback_query
-#   bot.edit_message_text(chat_id=query.message.chat_id,
-#                         message_id=query.message.message_id,
-#                         text= 'Выберите вид круга:',
-#                         reply_markup=kr_menu_keyboard())
+#     query = update.callback_query
+#     bot.send_photo(chat_id=query.message.chat_id,
+#                    message_id=query.message.message_id,
+#                    caption='Выберите вид круга:',                   
+#                    photo='https://telegram.org/img/t_logo.png',
+#                    reply_markup=kr_menu_keyboard())
+
+def kr_menu(bot, update):
+  query = update.callback_query
+  bot.edit_message_text(chat_id=query.message.chat_id,
+                        message_id=query.message.message_id,
+                        text= 'Выберите вид круга:',
+                        reply_markup=kr_menu_keyboard())
 
 def kr_kr_volume_menu(bot, update):
   query = update.callback_query
