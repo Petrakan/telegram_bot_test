@@ -1,6 +1,8 @@
 from telegram import Bot, Update
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import CommandHandler, CallbackQueryHandler, Updater
+from telegram.ext import CommandHandler, CallbackQueryHandler, Updater, MessageHandler
+
+import requests
 
 from config import REQUEST_KWARGS, TOKEN
 
