@@ -34,6 +34,7 @@ def main_menu(bot, update):
 #                    photo='https://telegram.org/img/t_logo.png',
 #                    reply_markup=kr_menu_keyboard())
 
+
 def kr_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
