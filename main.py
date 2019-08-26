@@ -27,11 +27,23 @@ def main_menu(bot, update):
 # Функции кругов
 
 def kr_menu(bot, update):
+  photo = requests.get('https://dog.ceo/api/breed/husky/images/random').json()
+  text = 'Выберите вид круга:'
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
-                        text= 'Выберите вид круга:',
+                        text= f'{photo} \n\n\n {text} ',
                         reply_markup=kr_menu_keyboard())
+
+# def kr_menu(bot, update):
+#     query = update.callback_query
+#     photo = requests.get('https://dog.ceo/api/breed/husky/images/random').json()
+#     bot.send_photo(caption="Bwoof! :)",
+#                    photo=photo['message'],
+#                    chat_id=query.message.chat_id,
+#                    message_id=query.message.message_id,
+#                    reply_markup=kr_menu_keyboard())
+
 
 def kr_kr_volume_menu(bot, update):
   query = update.callback_query
