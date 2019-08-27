@@ -1,5 +1,5 @@
 from telegram import Bot, Update
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 from telegram.ext import CommandHandler, CallbackQueryHandler, Updater, MessageHandler
 
 import requests
@@ -13,33 +13,28 @@ updater = Updater(TOKEN, request_kwargs=REQUEST_KWARGS)
 
 ############################### Функции ############################################
 def start(bot, update):
-  update.message.reply_text('Выберите вид товара',
+  update.message.reply_text(text='Выберите вид товара: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+                            parse_mode='HTML',
                             reply_markup=main_menu_keyboard())
 
 def main_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
-                        text= 'Выберите вид товара',
+                        text='Выберите вид товара: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+                        parse_mode='HTML',
                         reply_markup=main_menu_keyboard())
 
 
 # Функции кругов
-
-# def kr_menu(bot, update):
-#     query = update.callback_query
-#     bot.send_photo(chat_id=query.message.chat_id,
-#                    message_id=query.message.message_id,
-#                    caption='Выберите вид круга:',                   
-#                    photo='https://telegram.org/img/t_logo.png',
-#                    reply_markup=kr_menu_keyboard())
 
 
 def kr_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
-                        text= 'Выберите вид круга:',
+                        text='Выберите вид круга: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+                        parse_mode='HTML',
                         reply_markup=kr_menu_keyboard())
 
 def kr_kr_volume_menu(bot, update):
@@ -53,7 +48,8 @@ def kr_sn_volume_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
-                        text= 'Выберите колличество синих кругов: ',
+                        text= 'Выберите колличество синих кругов: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+                        parse_mode='HTML',
                         reply_markup=kr_sn_volume_keyboard())
 
 # Функции квадратов
