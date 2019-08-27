@@ -41,7 +41,6 @@ def main_menu(bot, update):
                         parse_mode='HTML',
                         reply_markup=main_menu_keyboard())
 
-
 # Функции кругов
 
 
@@ -71,6 +70,7 @@ def kr_sn_volume_menu(bot, update):
 
 # Функции квадратов
 
+
 def kv_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
@@ -96,6 +96,7 @@ def kv_sn_volume_menu(bot, update):
                         reply_markup=kv_sn_volume_keyboard())
 
 # Функции треугольников
+
 
 def tr_menu(bot, update):
   query = update.callback_query
@@ -124,6 +125,7 @@ def tr_sn_volume_menu(bot, update):
 
 ############################ Клавиатуры #########################################
 
+
 def start_keyboard():
   keyboard = [[InlineKeyboardButton('Перейти к выбору товара', callback_data='main')],
               [InlineKeyboardButton('Помощь', callback_data='help')]]
@@ -142,8 +144,8 @@ def main_menu_keyboard():
 
 
 # Клавиатуры товаров
-
 #Меню кругов
+
 
 def kr_menu_keyboard():
   keyboard = [[InlineKeyboardButton('Красный круг', callback_data='kr_kr_vol')],
