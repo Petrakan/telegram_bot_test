@@ -9,13 +9,29 @@ from config import REQUEST_KWARGS, TOKEN
 updater = Updater(TOKEN, request_kwargs=REQUEST_KWARGS)
 
 
-
-
 ############################### Функции ############################################
+
+
 def start(bot, update):
-  update.message.reply_text(text='Выберите вид товара: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+  update.message.reply_text(text='В нашем сервисе вы найдете все что нужно: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
                             parse_mode='HTML',
-                            reply_markup=main_menu_keyboard())
+                            reply_markup=start_keyboard())
+
+def open_start_page(bot, update):
+  query = update.callback_query
+  bot.edit_message_text(chat_id=query.message.chat_id,
+                        message_id=query.message.message_id,
+                        text='Выберите вид товара: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+                        parse_mode='HTML',
+                        reply_markup=start_keyboard())
+
+def help(bot, update):
+  query = update.callback_query
+  bot.edit_message_text(chat_id=query.message.chat_id,
+                        message_id=query.message.message_id,
+                        text=' Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: Выберите вид товара: ',
+                        # parse_mode='HTML',
+                        reply_markup=help_keyboard())
 
 def main_menu(bot, update):
   query = update.callback_query
@@ -25,9 +41,7 @@ def main_menu(bot, update):
                         parse_mode='HTML',
                         reply_markup=main_menu_keyboard())
 
-
 # Функции кругов
-
 
 def kr_menu(bot, update):
   query = update.callback_query
@@ -106,13 +120,26 @@ def tr_sn_volume_menu(bot, update):
                         reply_markup=tr_sn_volume_keyboard())
 
 
+############################ Клавиатуры #########################################
 
-############################ Основное меню #########################################
+def start_keyboard():
+  keyboard = [[InlineKeyboardButton('Перейти к выбору товара', callback_data='main')],
+              [InlineKeyboardButton('Помощь', callback_data='help')]]
+  return InlineKeyboardMarkup(keyboard)
+
+def help_keyboard():
+  keyboard = [[InlineKeyboardButton('Назад', callback_data='open_start_page')]]
+  return InlineKeyboardMarkup(keyboard)
+
 def main_menu_keyboard():
   keyboard = [[InlineKeyboardButton('Товар Круг', callback_data='kr1')],
               [InlineKeyboardButton('Товар Квадрат', callback_data='kv2')],
-              [InlineKeyboardButton('Товар Трекгольник', callback_data='tr3')]]
+              [InlineKeyboardButton('Товар Трекгольник', callback_data='tr3')],
+              [InlineKeyboardButton('Назад', callback_data='open_start_page')]]
   return InlineKeyboardMarkup(keyboard)
+
+
+# Клавиатуры товаров
 
 #Меню кругов
 
@@ -187,11 +214,15 @@ def tr_sn_volume_keyboard():
   return InlineKeyboardMarkup(keyboard)
 
 
-############################# Handlers #########################################
+############################# Регистрация обработчиков #########################################
+
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
+updater.dispatcher.add_handler(CallbackQueryHandler(help, pattern='help'))
+updater.dispatcher.add_handler(CallbackQueryHandler(open_start_page, pattern='open_start_page'))
 updater.dispatcher.add_handler(CallbackQueryHandler(main_menu, pattern='main'))
 
+# Товары
 updater.dispatcher.add_handler(CallbackQueryHandler(kr_menu, pattern='kr1'))
 updater.dispatcher.add_handler(CallbackQueryHandler(kr_kr_volume_menu, pattern='kr_kr_vol'))
 updater.dispatcher.add_handler(CallbackQueryHandler(kr_sn_volume_menu, pattern='kr_sn_vol'))
