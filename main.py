@@ -11,7 +11,6 @@ updater = Updater(TOKEN, request_kwargs=REQUEST_KWARGS)
 
 ############################### Функции ############################################
 
-
 def start(bot, update):
   update.message.reply_text(text='В нашем сервисе вы найдете все что нужно: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
                             parse_mode='HTML',
@@ -92,6 +91,7 @@ def kv_sn_volume_menu(bot, update):
                         text='Выберите колличество синих квадратов: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
                         parse_mode='HTML',
                         reply_markup=kv_sn_volume_keyboard())
+
 
 # Функции треугольников
 
