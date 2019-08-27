@@ -13,7 +13,7 @@ updater = Updater(TOKEN, request_kwargs=REQUEST_KWARGS)
 
 ############################### Функции ############################################
 def start(bot, update):
-  update.message.reply_text(text='Выберите вид товара: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+  update.message.reply_text(text='Выберите вид товара: <a href="https://telegram.org/img/t_logo.png" onclick="return false">&#8205;</a>',
                             parse_mode='HTML',
                             reply_markup=main_menu_keyboard())
 
@@ -21,7 +21,7 @@ def main_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
-                        text='Выберите вид товара: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+                        text='Выберите вид товара: <a href="https://telegram.org/img/t_logo.png" onclick="return false">&#8205;</a>',
                         parse_mode='HTML',
                         reply_markup=main_menu_keyboard())
 
@@ -33,7 +33,7 @@ def kr_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
-                        text='Выберите вид круга: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+                        text='Выберите вид круга: <a href="https://telegram.org/img/t_logo.png" onclick="return false">&#8205;</a>',
                         parse_mode='HTML',
                         reply_markup=kr_menu_keyboard())
 
@@ -41,14 +41,15 @@ def kr_kr_volume_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
-                        text= 'Выберите колличество красных кругов: ',
+                        text='Выберите колличество красных кругов: <a href="https://telegram.org/img/t_logo.png" onclick="return false">&#8205;</a>',
+                        parse_mode='HTML',
                         reply_markup=kr_kr_volume_keyboard())
 
 def kr_sn_volume_menu(bot, update):
   query = update.callback_query
   bot.edit_message_text(chat_id=query.message.chat_id,
                         message_id=query.message.message_id,
-                        text= 'Выберите колличество синих кругов: <a href="https://telegram.org/img/t_logo.png">&#8205;</a>',
+                        text= 'Выберите колличество синих кругов: <a href="https://telegram.org/img/t_logo.png" onclick="return false">&#8205;</a>',
                         parse_mode='HTML',
                         reply_markup=kr_sn_volume_keyboard())
 
